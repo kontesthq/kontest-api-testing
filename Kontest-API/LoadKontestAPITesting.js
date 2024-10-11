@@ -3,7 +3,7 @@ import { check, sleep } from 'k6';
 
 const TIME_UNIT = 's';  // You can change this to 's' for seconds or 'm' for minutes
 
-const totalUsers = 10000;  // Total number of users to simulate
+const totalUsers = 1000;  // Total number of users to simulate
 
 // should be minutes instead of seconds
 export const options = {
@@ -19,7 +19,7 @@ export const options = {
 
 export default () => {
     // const url = 'https://kontest-api.ayushsinghal.tech/kontests/api/v1/get_kontests?page=1&limit=10'; // URL of the API
-    const url = 'http://localhost:8080/kontests?page=1&per_page=100'; // URL of the API
+    const url = 'http://localhost:5151/kontests?page=1&per_page=1000'; // URL of the API
 
     // Sending the GET request
     const res = http.get(url);

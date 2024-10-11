@@ -14,7 +14,8 @@ export const options = {
 };
 
 export default () => {
-    const url = 'http://localhost:5151/api/v1/get_kontests?page=1&limit=1000'; // URL of the API
+    // const url = 'http://localhost:5151/api/v1/get_kontests?page=1&limit=1000'; // URL of the API
+    const url = 'http://localhost:5151/kontests?page=1&per_page=1000'; // URL of the API
 
     // Sending the GET request
     const res = http.get(url);

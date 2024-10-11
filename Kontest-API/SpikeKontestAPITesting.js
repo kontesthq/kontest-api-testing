@@ -1,10 +1,12 @@
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 
+const totalUsers = 2000;  // Total number of users to simulate
+
 export const options = {
     stages: [
-        { duration: '30s', target: 2000 }, // ramp up
-        { duration: '2m', target: 2000 }, // stable
+        { duration: '30s', target: totalUsers }, // ramp up
+        { duration: '2m', target: totalUsers }, // stable
         { duration: '30s', target: 0 }, // ramp down
     ],
     thresholds: {
@@ -13,7 +15,8 @@ export const options = {
 };
 
 export default () => {
-    const url = 'http://localhost:5151/api/v1/get_kontests?page=1&limit=1000'; // URL of the API
+    // const url = 'http://localhost:5151/api/v1/get_kontests?page=1&limit=1000'; // URL of the API
+    const url = 'http://localhost:5151/kontests?page=1&per_page=1000'; // URL of the API
 
     // Sending the GET request
     const res = http.get(url);
