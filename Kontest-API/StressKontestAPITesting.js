@@ -1,6 +1,8 @@
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 
+import { KONTEST_API_BASE_URL } from './config.js';
+
 const TIME_UNIT = 's';  // You can change this to 's' for seconds or 'm' for minutes
 
 // should be minutes instead of seconds
@@ -20,11 +22,17 @@ export const options = {
 };
 
 export default () => {
-    // const url = 'http://localhost:5151/api/v1/get_kontests?page=1&limit=1000'; // URL of the API
-    const url = 'http://localhost:5151/kontests?page=1&per_page=1000'; // URL of the API
+
+    const url = `${KONTEST_API_BASE_URL}/kontests?page=1&per_page=1000`; // URL of the API
 
     // Sending the GET request
     const res = http.get(url);
+
+    // Log the response status and body if the status is not 200
+    if (res.status !== 200) {
+        console.log(`Response status: ${res.status}`);
+        console.log(`Response body: ${res.body}`);
+    }
 
     // Checking if the response status is 200
     check(res, {
